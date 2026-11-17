@@ -1,3 +1,17 @@
+**Dev Update – November 16, 2026**
+
+**Lobby wager UI**
+- Finished wiring the lobby wager UI in WBP_LobbyOverlay: the join wager button, the status text that updates on join, status polling every 10 seconds, and error messages shown in the lobby.
+
+**First cloud match test**
+- Ran the first real match on the cloud dedicated server. Login and matchmaking worked end to end, and the client reached the cloud server.
+- The server crashed whenever a match started with wagers enabled. Traced it to a memory allocator mismatch in the GameLift server SDK (5.1.3) used by our older GameLift plugin: its fleet-role-credentials call frees memory allocated inside the SDK DLL with Unreal's allocator. AWS fixed this upstream in plugin 3.0.0 / SDK 5.3.
+- Wrote a workaround in the wager server subsystem that calls the SDK directly, avoids the faulty cleanup, and adds step logging.
+
+**Next up**
+- Build server 1.0.4, redeploy, and retest with a small test wager.
+- Longer term: upgrade to the 3.x GameLift plugin.
+
 **Dev Update – November 14, 2026**
 
 **Wager system (Dennis Token on Cardano)**
