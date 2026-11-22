@@ -1,3 +1,20 @@
+**Dev Update – November 22, 2026**
+
+**Cloud server and client**
+- After the GameLift crash workaround, we shipped and tested dedicated server builds through 1.0.7. Login, matchmaking, and joining a cloud match now work with wagers enabled.
+- The client automatically retries joining a session a few times if the first attempt fails, and it shows a clear message when no cloud servers are available.
+- A full cloud test on 1.0.7 completed cleanly: players could join, and the session shut down properly when the match ended.
+
+**Automatic wagers (private tests)**
+- Automatic refunds and payouts are now on for private testing only. Public play is not open yet.
+- Wager flow: each player stakes 1 DENNIS + 2 ADA. Matches are free-for-all, and most kills wins. If a match does not fill in time, it is cancelled and everyone is refunded automatically.
+- Fixed a payout bug that blocked automatic settlement when a match had more than one deposit.
+- We completed the first fully automatic wager payout in a private live match. After the round ended, the winner's DENNIS and ADA arrived in their Cardano wallet within seconds, with no manual steps.
+
+**Next up**
+- Keep running private live tests of automatic refunds and payouts.
+- Longer term: upgrade to the 3.x GameLift plugin.
+
 **Dev Update – November 16, 2026**
 
 **Lobby wager UI**
