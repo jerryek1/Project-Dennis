@@ -1,3 +1,21 @@
+**Dev Update – November 24, 2026**
+
+**Cloud server 1.0.8**
+- Packaged and deployed server and game build 1.0.8 to a fresh cloud dedicated-server fleet, replacing 1.0.7.
+
+**Lobby deposit countdown**
+- The lobby now shows a wager deposit countdown, so players can see how long they have to fund their stake. The deposit window is 15 minutes.
+
+**First full wager round**
+- Ran the first full wager round on 1.0.8 in a private two-player test. Both players deposited 1 DENNIS + 2 ADA, and the match started only once the wager was fully funded.
+- Free-for-all, most kills wins. The final score was 8-3. The server settled the result and paid the winner automatically on Cardano mainnet within minutes.
+- The full flow checked out: open, funded, in progress, settled, and automatic payout.
+
+**Next up**
+- The game server stays up too long after a match is settled. Fixing the post-match shutdown is next.
+- After that, edge-case tests: a player who never pays, only one player joining, and everyone leaving early.
+- A more informative wager status screen in the lobby.
+
 **Dev Update – November 22, 2026**
 
 **Cloud server and client**
