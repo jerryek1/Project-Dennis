@@ -1,3 +1,21 @@
+**Dev Update – November 25, 2026**
+
+**Post-match server time**
+- Looked into why the cloud server seemed to stay on after Sunday's wager test. The game session actually ended on its own 2 minutes after the last player left. The cost came from the idle server instance staying up until capacity was scaled to zero.
+
+**Shutdown fix (server 1.0.9)**
+- After a finished round (settled or cancelled), if the lobby is empty the server now cancels any pending rematch wager. Players who paid get refunded by the backend, and the session ends after 20 seconds instead of 2 minutes.
+- A rematch wager is now created only when a player is actually in the lobby, so we don't leave orphan wagers behind. The first round still keeps the 2-minute reconnect grace.
+
+**Cloud fleet**
+- Built and packaged dedicated server 1.0.9 and swapped the cloud fleet over to it. Matchmaking now points at 1.0.9. The existing 1.0.8 game client stays compatible.
+- Cloud servers idle at zero between tests, with an hourly auto-off safety check.
+
+**Next up**
+- Live test of 1.0.9.
+- Then edge cases: a player who never pays, a single player, and everyone leaving.
+- A more informative wager and lobby screen.
+
 **Dev Update – November 24, 2026**
 
 **Cloud server 1.0.8**
