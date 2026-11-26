@@ -1,5 +1,31 @@
 **Dev Update – November 25, 2026**
 
+**First live test of server 1.0.9**
+- Brought the 1.0.9 dedicated server fleet online on GameLift for a private two-player wager test, using the 1.0.8 client. Free-for-all, most kills wins, and each player stakes 1 DENNIS + 2 ADA.
+
+**Never-pays edge case**
+- On the first attempt, one player's deposit was sent back to their own wallet instead of the pot, so the 15-minute deposit deadline passed.
+- That became a real test of the never-pays case. The server cancelled the match, the player who did pay was automatically refunded on-chain (DENNIS and ADA), and the session shut down cleanly. Passed.
+
+**Funded match**
+- On the second attempt, both deposits confirmed. Each needed 10 confirmations, which takes a few minutes, so there is a short wait before the match starts. The match was marked funded and started automatically.
+- Final score: 14 kills to 7. The server settled the wager and paid the winner on-chain (2 DENNIS plus the minimum ADA that has to go with it). The leftover ADA stays in the pot.
+
+**Post-round shutdown**
+- The 1.0.9 shutdown fix worked. After the round ended and the lobby emptied, the server cancelled and refunded the automatic rematch wager and ended the session about 20-25 seconds later, so no idle server time was wasted.
+- The fleet scaled back to zero after testing.
+
+**Bugs found**
+- The in-game score display stayed at 0 on the clients even though the server counted kills correctly. The score widget likely binds to the player state before map travel finishes. Needs a client fix and rebuild.
+- The lobby had no match map set, so the match fell back to the default third-person map. The lobby game mode's travel map needs to be set.
+
+**Next up**
+- Fix the score HUD and the match map.
+- Then test the single-player and everyone-leaves edge cases.
+- Then polish the wager status info in the lobby.
+
+**Dev Update – November 25, 2026**
+
 **Post-match server time**
 - Looked into why the cloud server seemed to stay on after Sunday's wager test. The game session actually ended on its own 2 minutes after the last player left. The cost came from the idle server instance staying up until capacity was scaled to zero.
 
